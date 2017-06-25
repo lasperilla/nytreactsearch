@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 // Including the Link component from React Router to navigate within our application without full page reloads
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
-// import Search from './search';
-// import Saved from './saved';
+import Search from './search';
+import Saved from './saved';
 
 // import Query from './children/query';
 // import Results from './children/results';
@@ -14,6 +14,9 @@ class Main extends Component {
     return (
       <div>
         <p>this is the main div</p>
+        <hr/>
+        <Search />
+        <Saved />
       </div>
       // <Router>
       //   <div className="container">

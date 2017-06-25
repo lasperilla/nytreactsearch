@@ -8,3 +8,4 @@ if (results.length >0){
 } else {
 	resultsDiv = <p> Hit search to see results </p>
 }
+
