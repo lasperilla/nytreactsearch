@@ -6864,11 +6864,11 @@ module.exports = getEventCharCode;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(198);
-/* unused harmony reexport BrowserRouter */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(213);
 /* unused harmony reexport HashRouter */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(95);
-/* unused harmony reexport Link */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(215);
 /* unused harmony reexport MemoryRouter */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(216);
@@ -6878,7 +6878,7 @@ module.exports = getEventCharCode;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(218);
 /* unused harmony reexport Redirect */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(219);
-/* unused harmony reexport Route */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(220);
 /* unused harmony reexport Router */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(221);
@@ -23449,35 +23449,64 @@ var Main = function (_Component) {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
+        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["a" /* BrowserRouter */],
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'p',
-          null,
-          'this is the main div'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__search__["a" /* default */], null),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__saved__["a" /* default */], null)
-      )
-      // <Router>
-      //   <div className="container">
-      //       <div className="jumbotron">
-      //         <h2><strong>Which Child???</strong></h2>
-      //         <p><em>A journey through the whimsical world of React Routing</em></p>
-      //         <hr />
-      //         <p>
-      //           <Link to="/Child1"><button className="btn btn-primary btn-lg">Show Child #1</button></Link>
-      //           <Link to="/Child2"><button className="btn btn-danger btn-lg">Show Child #2</button></Link>
-      //         </p>
-      //       </div>
-      //       <div className="row">
-      //         <Route path="/Child1" component={Child1}/>
-      //         <Route path="/Child2" component={Child2}/>
-      //       </div>
-      //   </div>
-      // </Router>
-      ;
+          'div',
+          { className: 'container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'jumbotron' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'h2',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'strong',
+                null,
+                'Which Child???'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'em',
+                null,
+                'A journey through the whimsical world of React Routing'
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'p',
+              null,
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+                { to: '/Search' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'button',
+                  { className: 'btn btn-primary btn-lg' },
+                  'Show Search Compnent'
+                )
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */],
+                { to: '/Saved' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'button',
+                  { className: 'btn btn-danger btn-lg' },
+                  'Show Saved Articles Component'
+                )
+              )
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: '/Search', component: __WEBPACK_IMPORTED_MODULE_2__search__["a" /* default */] }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* Route */], { path: '/Saved', component: __WEBPACK_IMPORTED_MODULE_3__saved__["a" /* default */] })
+          )
+        )
+      );
     }
   }]);
 
@@ -23544,7 +23573,7 @@ BrowserRouter.propTypes = {
 };
 
 
-/* unused harmony default export */ var _unused_webpack_default_export = (BrowserRouter);
+/* harmony default export */ __webpack_exports__["a"] = (BrowserRouter);
 
 /***/ }),
 /* 199 */
@@ -25759,7 +25788,7 @@ NavLink.defaultProps = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router__ = __webpack_require__(12);
-/* unused harmony reexport default */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0_react_router__["a"]; });
 
 
 /***/ }),
