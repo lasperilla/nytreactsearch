@@ -1,8 +1,8 @@
 // Include React
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-// import Query from './query';
-// import Results from './results';
+import Query from './query';
+import Results from './results';
 
               //// goes under I'm child 1!
               // <p>
@@ -14,6 +14,13 @@ import { Link, Route } from 'react-router-dom';
               // <Route path="/Search/results" component={results} />
 
 class Search extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {topic:"Topic", start:"", end:"", articles:{}};
+  }  
+  getQueryParams(topic, start, end) {
+      this.setState({"topic":topic, "start":start, "end":end});
+  }
   render() {
     return (
       <div className="container">
@@ -23,9 +30,13 @@ class Search extends Component {
               <h3 className="panel-title">Search</h3>
             </div>
             <div className="panel-body">
-              <p>This is the search component</p>
+              <p>{this.state.topic}</p>
+              <Query getQueryParams={this.getQueryParams.bind(this)}/>
             </div>
           </div>
+        </div>
+        <div className="col-lg-12">
+          <Results />
         </div>
       </div>
     )
