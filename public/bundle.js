@@ -44326,9 +44326,19 @@ var Results = function (_Component) {
             null,
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { target: '_blank', href: obj.web_url, 'data-id': obj._id },
-              obj.headline.main
-            )
+              { target: '_blank', href: obj.web_url },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                obj.headline.main
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { 'data-id': obj._id, className: 'btn btn-success btn-xs' },
+              'Save Article'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null)
           );
         });
 
@@ -44364,11 +44374,6 @@ var Results = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'panel-body' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'p',
-            null,
-            'This is the Results component'
-          ),
           resultsDiv
         )
       );

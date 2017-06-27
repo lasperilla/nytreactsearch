@@ -20,7 +20,9 @@ class Results extends Component {
         
         var resultsList = results.map(function(obj){
                         return <li>
-                          <a target="_blank" href={obj.web_url} data-id={obj._id}>{obj.headline.main}</a>
+                          <a target="_blank" href={obj.web_url}><p>{obj.headline.main}</p></a>
+                          <button data-id={obj._id} className="btn btn-success btn-xs">Save Article</button>
+                          <hr/>
                         </li>;
                       })
 
@@ -37,7 +39,6 @@ class Results extends Component {
               <h3 className="panel-title">Results</h3>
             </div>
             <div className="panel-body">
-              <p>This is the Results component</p>
               {resultsDiv}
             </div>
           </div>
