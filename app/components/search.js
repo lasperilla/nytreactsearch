@@ -22,24 +22,33 @@ class Search extends Component {
   getQueryParams(topic, start, end) {
       this.setState({"topic":topic, "start":start, "end":end});
   }
-  getResults(articles) {
-      this.setState({"articles":articles});
+  // getResults(articles) {
+  //     this.setState({"articles":articles});
+  // }
+  componentDidUpdate() {
+
+      // Run the query for the address
+      helpers.runQuery(this.state.topic, this.state.start, this.state.end).then(function (data) {
+          if (data !== this.state.articles) {
+              console.log("Articles", data);
+              this.setState({articles: data});
+          }
+      }.bind(this));
   }
   render() {
     return (
-      <div className="container">
-        <div className="col-lg-12">
+      <div>
+        <div>
           <div className="panel panel-primary">
             <div className="panel-heading">
               <h3 className="panel-title">Search</h3>
             </div>
             <div className="panel-body">
-              <p>{this.state.topic}</p>
-              <Query getQueryParams={this.getQueryParams.bind(this)} getResults={this.getResults.bind(this)}/>
+              <Query getQueryParams={this.getQueryParams.bind(this)} />
             </div>
           </div>
         </div>
-        <div className="col-lg-12">
+        <div>
           <Results articles={this.state.articles} />
         </div>
       </div>

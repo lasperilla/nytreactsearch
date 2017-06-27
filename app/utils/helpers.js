@@ -9,15 +9,18 @@ const API_key = "defcdcfdde634a5d8c8bd2fd522eef32";
 export default {
 
     // This function serves our purpose of running the query to geolocate.
-    runQuery(topic) {
+    runQuery(topic, start, end) {
 
             console.log(topic);
-            let topic2 ="trump scandal"
-            let uriTopic = encodeURIComponent(topic2)
-            let start = 20170527
-            let end = 20170627
+            let uriTopic = encodeURIComponent(topic)
 
-            var queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${API_key}&sort=newest&q=${uriTopic}&begin_date=${start}&end_date=${end}`;
+            var queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${API_key}&sort=newest&q=${uriTopic}`;
+            if (start !== "") {
+                queryURL+= `&begin_date=${start}`
+                }
+            if (end !== "") {
+                queryURL+= `&begin_date=${end}`
+                }
             console.log("queryURL", queryURL)
 
             // Figure out the geotopic
@@ -35,13 +38,13 @@ export default {
             });
         },
 
-        // This function hits our own server to retrieve the record of query results
-        getHistory() {
-            return axios.get("/api");
-        },
+        // // This function hits our own server to retrieve the record of query results
+        // getHistory() {
+        //     return axios.get("/api");
+        // },
 
-        // This function posts new searches to our database.
-        postHistory(topic) {
-            return axios.post("/api", { topic: topic });
-        }
+        // // This function posts new searches to our database.
+        // postHistory(topic) {
+        //     return axios.post("/api", { topic: topic });
+        // }
 };

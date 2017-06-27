@@ -27,6 +27,7 @@ class Main extends Component {
                 <Link to="/Saved"><button className="btn btn-primary">Saved Articles</button></Link>
               </div>
             </div>
+            <hr/>
             <div className="row col-lg-12">
               <Route path="/Search" component={Search}/>
               <Route path="/Saved" component={Saved}/>

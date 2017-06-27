@@ -30697,6 +30697,7 @@ var Main = function (_Component) {
                 )
               )
             ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'row col-lg-12' },
@@ -44117,20 +44118,31 @@ var Search = function (_Component) {
     value: function getQueryParams(topic, start, end) {
       this.setState({ "topic": topic, "start": start, "end": end });
     }
+    // getResults(articles) {
+    //     this.setState({"articles":articles});
+    // }
+
   }, {
-    key: 'getResults',
-    value: function getResults(articles) {
-      this.setState({ "articles": articles });
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+
+      // Run the query for the address
+      __WEBPACK_IMPORTED_MODULE_4__utils_helpers__["a" /* default */].runQuery(this.state.topic, this.state.start, this.state.end).then(function (data) {
+        if (data !== this.state.articles) {
+          console.log("Articles", data);
+          this.setState({ articles: data });
+        }
+      }.bind(this));
     }
   }, {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'container' },
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'col-lg-12' },
+          null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'panel panel-primary' },
@@ -44146,18 +44158,13 @@ var Search = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'panel-body' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                null,
-                this.state.topic
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__query__["a" /* default */], { getQueryParams: this.getQueryParams.bind(this), getResults: this.getResults.bind(this) })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__query__["a" /* default */], { getQueryParams: this.getQueryParams.bind(this) })
             )
           )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'col-lg-12' },
+          null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__results__["a" /* default */], { articles: this.state.articles })
         )
       );
@@ -44208,10 +44215,6 @@ var Query = function (_Component) {
     value: function handleClick(event) {
       event.preventDefault();
       this.props.getQueryParams(this.state.topic, this.state.start, this.state.end);
-      __WEBPACK_IMPORTED_MODULE_2__utils_helpers__["a" /* default */].runQuery(this.state.topic).then(function (articles) {
-        console.log("THIS", this);
-        // this.props.getResults(articles).bind(this)
-      }).bind(this);
     }
   }, {
     key: 'handleChange',
@@ -44245,7 +44248,7 @@ var Query = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'label',
             { 'for': 'topic' },
-            'Start Date'
+            'Start Date (YYYY/MM/DD)'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.state.start, className: 'form-control', id: 'start', onChange: this.handleChange.bind(this) })
         ),
@@ -44255,14 +44258,14 @@ var Query = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'label',
             { 'for': 'topic' },
-            'End Date'
+            'End Date (YYYY/MM/DD)'
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.state.end, className: 'form-control', id: 'end', onChange: this.handleChange.bind(this) })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'button',
           { className: 'btn btn-primary', onClick: this.handleClick.bind(this) },
-          'test'
+          'Search'
         )
       );
     }
@@ -44289,19 +44292,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// if (results.length >0){
-// 	resultsDiv = 
-// 		<ul>
-// 			results.map((e,i)=>{
-// 				//build list items
-// 			})
-// 		</ul>	
-// } else {
-// 	resultsDiv = <p> Hit search to see results </p>
-// }
+// var names = ['Jake', 'Jon', 'Thruster'];
+//         var namesList = names.map(function(name){
+//                         return <li>{name}</li>;
+//                       })
+
+//         return  <ul>{ namesList }</ul>
 
 // Include React
 
+
+
+// let resultsDiv = populateResults(this.props.articles)
 
 
 var Results = function (_Component) {
@@ -44314,36 +44316,60 @@ var Results = function (_Component) {
   }
 
   _createClass(Results, [{
+    key: 'populateResults',
+    value: function populateResults(results) {
+      if (results.length > 0) {
+
+        var resultsList = results.map(function (obj) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'li',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { target: '_blank', href: obj.web_url, 'data-id': obj._id },
+              obj.headline.main
+            )
+          );
+        });
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'ul',
+          null,
+          resultsList
+        );
+      } else {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          null,
+          ' Hit search to see results '
+        );
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var resultsDiv = this.populateResults(this.props.articles);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'container' },
+        { className: 'panel panel-primary' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'col-lg-12' },
+          { className: 'panel-heading' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'panel panel-primary' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'panel-heading' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h3',
-                { className: 'panel-title' },
-                'Results'
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'panel-body' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                null,
-                'This is the Results component'
-              )
-            )
+            'h3',
+            { className: 'panel-title' },
+            'Results'
           )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'panel-body' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            null,
+            'This is the Results component'
+          ),
+          resultsDiv
         )
       );
     }
@@ -45121,15 +45147,18 @@ var API_key = "defcdcfdde634a5d8c8bd2fd522eef32";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     // This function serves our purpose of running the query to geolocate.
-    runQuery: function runQuery(topic) {
+    runQuery: function runQuery(topic, start, end) {
 
         console.log(topic);
-        var topic2 = "trump scandal";
-        var uriTopic = encodeURIComponent(topic2);
-        var start = 20170527;
-        var end = 20170627;
+        var uriTopic = encodeURIComponent(topic);
 
-        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + API_key + "&sort=newest&q=" + uriTopic + "&begin_date=" + start + "&end_date=" + end;
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + API_key + "&sort=newest&q=" + uriTopic;
+        if (start !== "") {
+            queryURL += "&begin_date=" + start;
+        }
+        if (end !== "") {
+            queryURL += "&begin_date=" + end;
+        }
         console.log("queryURL", queryURL);
 
         // Figure out the geotopic
@@ -45145,18 +45174,6 @@ var API_key = "defcdcfdde634a5d8c8bd2fd522eef32";
             // If we don't get any results, return an empty string
             return "";
         });
-    },
-
-
-    // This function hits our own server to retrieve the record of query results
-    getHistory: function getHistory() {
-        return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/api");
-    },
-
-
-    // This function posts new searches to our database.
-    postHistory: function postHistory(topic) {
-        return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api", { topic: topic });
     }
 });
 
