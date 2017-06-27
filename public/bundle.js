@@ -30683,7 +30683,7 @@ var Main = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
                     { className: 'btn btn-primary' },
-                    'Search Articls'
+                    'Search Articles'
                   )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -44190,51 +44190,66 @@ var Query = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Query.__proto__ || Object.getPrototypeOf(Query)).call(this, props));
 
-    _this.state = { topic: "test", start: "1", end: "9" };
+    _this.state = { topic: "", start: "", end: "" };
     return _this;
   }
 
   _createClass(Query, [{
     key: 'handleClick',
-    value: function handleClick() {
+    value: function handleClick(event) {
+      event.preventDefault();
       this.props.getQueryParams(this.state.topic, this.state.start, this.state.end);
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(event) {
+      // Here we create syntax to capture any change in text to the query terms (pre-search).
+      // See this Stack Overflow answer for more details:
+      // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
+      var newState = {};
+      newState[event.target.id] = event.target.value;
+      this.setState(newState);
     }
   }, {
     key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'container' },
+        'form',
+        null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
-          { className: 'col-lg-12' },
+          { className: 'form-group' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'panel panel-primary' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'panel-heading' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'h3',
-                { className: 'panel-title' },
-                'Query'
-              )
-            ),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'div',
-              { className: 'panel-body' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'p',
-                null,
-                'This is the Query component'
-              ),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'button',
-                { className: 'btn btn-danger', onClick: this.handleClick.bind(this) },
-                'test'
-              )
-            )
-          )
+            'label',
+            { 'for': 'topic' },
+            'Topic'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.state.topic, className: 'form-control', id: 'topic', onChange: this.handleChange.bind(this) })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'form-group' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            { 'for': 'topic' },
+            'Start Date'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.state.start, className: 'form-control', id: 'start', onChange: this.handleChange.bind(this) })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'form-group' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'label',
+            { 'for': 'topic' },
+            'End Date'
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', value: this.state.end, className: 'form-control', id: 'end', onChange: this.handleChange.bind(this) })
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'button',
+          { className: 'btn btn-primary', onClick: this.handleClick.bind(this) },
+          'test'
         )
       );
     }

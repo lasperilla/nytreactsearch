@@ -23,7 +23,7 @@ class Main extends Component {
                 <h3>React NYT Search</h3>
               </div>
               <div className="col-lg-6">
-                <Link to="/Search"><button className="btn btn-primary">Search Articls</button></Link>
+                <Link to="/Search"><button className="btn btn-primary">Search Articles</button></Link>
                 <Link to="/Saved"><button className="btn btn-primary">Saved Articles</button></Link>
               </div>
             </div>
