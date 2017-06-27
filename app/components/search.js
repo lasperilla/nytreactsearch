@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import Query from './query';
 import Results from './results';
+import helpers from "../utils/helpers";
 
               //// goes under I'm child 1!
               // <p>
@@ -16,10 +17,13 @@ import Results from './results';
 class Search extends Component {
   constructor(props) {
       super(props);
-      this.state = {topic:"Topic", start:"", end:"", articles:{}};
+      this.state = {topic:"Topic", start:"", end:"", articles:[]};
   }  
   getQueryParams(topic, start, end) {
       this.setState({"topic":topic, "start":start, "end":end});
+  }
+  getResults(articles) {
+      this.setState({"articles":articles});
   }
   render() {
     return (
@@ -31,12 +35,12 @@ class Search extends Component {
             </div>
             <div className="panel-body">
               <p>{this.state.topic}</p>
-              <Query getQueryParams={this.getQueryParams.bind(this)}/>
+              <Query getQueryParams={this.getQueryParams.bind(this)} getResults={this.getResults.bind(this)}/>
             </div>
           </div>
         </div>
         <div className="col-lg-12">
-          <Results />
+          <Results articles={this.state.articles} />
         </div>
       </div>
     )

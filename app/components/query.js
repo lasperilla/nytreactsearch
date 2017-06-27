@@ -1,6 +1,7 @@
 // Include React
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
+import helpers from "../utils/helpers";
 
 class Query extends Component {
   constructor(props) {
@@ -10,6 +11,11 @@ class Query extends Component {
   handleClick(event) {
       event.preventDefault()
       this.props.getQueryParams(this.state.topic, this.state.start, this.state.end);
+      helpers.runQuery(this.state.topic).then(
+        function(articles){
+          console.log("THIS", this)
+          // this.props.getResults(articles).bind(this)
+        }).bind(this)
   }
   handleChange(event) {
     // Here we create syntax to capture any change in text to the query terms (pre-search).
