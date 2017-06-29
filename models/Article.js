@@ -2,11 +2,14 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-  location: {
+  headline: {
     type: String
   },
-  date: {
-    type: Date
+  url: {
+    type: String
+  },
+  article_id: {
+  	type: String
   }
 });
 

@@ -23,10 +23,6 @@ export default {
                 }
             console.log("queryURL", queryURL)
 
-            // Figure out the geotopic
-            // const queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + topic + "&pretty=1&key=" + API_key;
-
-
             return axios.get(queryURL).then(function(response) {
                 console.log("response", response.data.response.docs)
                 if (response.data.response.docs) {
@@ -38,13 +34,15 @@ export default {
             });
         },
 
-        // // This function hits our own server to retrieve the record of query results
-        // getHistory() {
-        //     return axios.get("/api");
-        // },
+        // This function hits our own server to retrieve saved articles
+        getSaved() {
+            return axios.get("/api/saved");
+        },
 
-        // // This function posts new searches to our database.
-        // postHistory(topic) {
-        //     return axios.post("/api", { topic: topic });
-        // }
+        // This function posts new saved articles to our database.
+        postSaved(headline, url, _id) {
+            return axios.post("/api", { headline: headline, url: url, article_id:_id });
+        }
+
+        //delete
 };

@@ -4,15 +4,32 @@ import React, { Component } from 'react';
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 // React Bootstrap Components
 import { Navbar,Nav, NavItem } from 'react-bootstrap';
-//Children
+// Children
 import Search from './search';
 import Saved from './saved';
-
-// import Query from './children/query';
-// import Results from './children/results';
+// Helper functions
+import helpers from "../utils/helpers";
 
 
 class Main extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {saved: []}
+  }
+
+
+  // The moment the page renders get the History
+  componentDidMount() {
+      // Get the saved articles.
+      helpers.getSaved().then(function (response) {
+          console.log(response);
+          if (response !== this.state.saved) {
+              console.log("Saved", response.data);
+              this.setState({saved: response.data});
+          }
+      }.bind(this));
+  }
+
   render() {
     return (
       <Router>
@@ -30,7 +47,7 @@ class Main extends Component {
             <hr/>
             <div className="row col-lg-12">
               <Route path="/Search" component={Search}/>
-              <Route path="/Saved" component={Saved}/>
+              <Route path="/Saved" component={Saved} saved={this.state.saved}/>
             </div>
           </div>
 

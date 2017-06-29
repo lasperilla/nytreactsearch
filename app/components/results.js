@@ -1,27 +1,27 @@
 
-
-// var names = ['Jake', 'Jon', 'Thruster'];
-//         var namesList = names.map(function(name){
-//                         return <li>{name}</li>;
-//                       })
-
-//         return  <ul>{ namesList }</ul>
-
 // Include React
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-
-    // let resultsDiv = populateResults(this.props.articles)
+// Helper functions
+import helpers from "../utils/helpers";
 
 
 class Results extends Component {
+  handleClick(event) {
+      console.log("in handleclick", event)
+      // helpers.postSaved(this.data-headline, this.data-url, this.data-id);
+  }
+  renderButton(headline, url, id){
+    return <button data-headline={headline} data-url={url} data-id={id} className="btn btn-success btn-xs" onClick={(e)=>this.handleClick(e).bind(this)}>Save Article</button>
+  }
   populateResults(results) {
     if (results.length >0){
         
         var resultsList = results.map(function(obj){
                         return <li>
                           <a target="_blank" href={obj.web_url}><p>{obj.headline.main}</p></a>
-                          <button data-id={obj._id} className="btn btn-success btn-xs">Save Article</button>
+                          <button data-headline={obj.headline.main} data-url={obj.web_url} data-id={obj._id} className="btn btn-success btn-xs" onClick={(e)=>{console.log('onclick');
+                            helpers.postSaved(e.target.dataset.headline, e.target.dataset.url, e.target.dataset._id)}}>Save Article</button>
                           <hr/>
                         </li>;
                       })
